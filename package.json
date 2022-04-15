@@ -2,15 +2,37 @@
   "name": "@prelude/docs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./cjs/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test",
+    "preversion": "make test",
+    "postversion": "make postversion"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commonmark": "0.29.3",
-    "highlight.js": "10.6.0"
+    "@prelude/string": "0.2.0",
+    "commonmark": "0.30.0",
+    "highlight.js": "11.5.1",
+    "typescript": "4.6.3"
+  },
+  "type": "module",
+  "module": "./mjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./mjs/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./*.js": {
+      "import": "./mjs/*.js",
+      "require": "./cjs/*.js"
+    },
+    "./*": {
+      "require": "./cjs/*.js"
+    }
+  },
+  "devDependencies": {
+    "ts-node": "10.7.0"
   }
 }
